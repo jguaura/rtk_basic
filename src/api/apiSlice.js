@@ -11,6 +11,14 @@ export const apiSlice = createApi({
       providesTags: ["Tasks"],
       transformResponse: response => response.sort((a,b) => b.id - a.id)
     }),
+    updateTask: builder.mutation({
+      query: (updatedTask) => ({
+        url: `/tasks/${updatedTask.id}`,
+        method: 'PATCH',
+        body: updatedTask
+      }),
+      invalidatesTags: ["Tasks"]
+    }),
     createTask: builder.mutation({
       query: (newTask) => ({
         url: '/tasks',
@@ -22,11 +30,11 @@ export const apiSlice = createApi({
     deleteTask: builder.mutation({
       query: (id) => ({
         url: `/tasks/${id}`,
-        method: "DELETE"
+        method: 'DELETE'
       }),
       invalidatesTags: ["Tasks"]
     })
   })
 });
 
-export const { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation } = apiSlice;
+export const { useGetTasksQuery, useCreateTaskMutation, useDeleteTaskMutation, useUpdateTaskMutation } = apiSlice;
