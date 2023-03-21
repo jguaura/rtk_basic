@@ -19,16 +19,10 @@
       "completed": "false"
     },
     {
-      "name": "asds",
-      "description": "dsds",
-      "completed": true,
-      "id": 4
-    },
-    {
-      "name": "taks 5",
-      "description": "from react",
+      "name": "Task 4",
+      "description": "Task created from react",
       "completed": false,
-      "id": 5
+      "id": 4
     }
   ]
 }
