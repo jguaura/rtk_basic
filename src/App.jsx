@@ -3,12 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import TasksList from './components/TasksList'
+import TaskForm from './components/TaskForm'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <TasksList />
+    <>
+      <TaskForm />
+      <TasksList />
+    </>
   )
 }
 

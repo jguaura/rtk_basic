@@ -1,15 +1,25 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
-  reducerPath: "api",
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3000'
   }),
   endpoints: (builder) => ({
     getTasks: builder.query({
-      query: () => '/tasks'
+      query: () => '/tasks',
+      providesTags: ["Tasks"],
+      transformResponse: response => response.sort((a,b) => b.id - a.id)
+    }),
+    createTask: builder.mutation({
+      query: (newTask) => ({
+        url: '/tasks',
+        method: 'POST',
+        body: newTask
+      }),
+      invalidatesTags: ["Tasks"]
     })
   })
-})
+});
 
-export const { useGetTasksQuery } = apiSlice
+export const { useGetTasksQuery, useCreateTaskMutation } = apiSlice;
